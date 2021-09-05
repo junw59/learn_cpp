@@ -81,6 +81,36 @@ protected:
 	string _narrator;
 };
 
+class Magazine : public LibMat {
+public:
+	Magazine( const string &title, const string & year, const string & volume)
+		: _title(title), _year(year), _volume(volume){
+		cout << "Magazine: magzine (" << _title
+			 << "," << _year
+			 << "," << _volume << ") constructor!\n";
+	}
+
+	~Magazine(){
+		cout << "Magazine: magzine destructor!\n";
+	}
+
+	void print() const {
+		cout << "Magazine::print() -- I am a Magazine object!\n"
+			 << "My title is: " << _title << '\n'
+			 << "My year is: " << _year << '\n'
+			 << "My volume is: " << _volume << endl;
+	}
+
+	const string& title() const { return _title;}
+	const string& year() const { return _year;}
+	const string& volume() const { return _volume;}
+
+protected:
+	string _title;
+	string _year;
+	string _volume;
+};
+
 void print( const LibMat &mat )
 {
 	cout << "in global print(): about to print mat.print()\n";
@@ -107,6 +137,12 @@ int main()
         cout << "\n" << "Creating a AudioBook object to print()\n";
 	    AudioBook ab( "Man Without Qualities", "Robert Musil", "Kenneth Meyer" );
 	    print( ab );
+	}
+
+	{
+        cout << "\n" << "Creating a Magazine object to print()\n";
+	    Magazine m( "Jump", "2021", "35" );
+	    print( m );
 	}
 
 	return 0; // unnecessary but quiets vc++
